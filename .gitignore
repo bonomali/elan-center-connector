@@ -1,0 +1,12 @@
+.coverage
+cover/
+.project
+.pydevproject
+.settings/
+debian/*.debhelper
+debian/debhelper-*
+*.pyc
+__pycache__/
+manage.py
+pip-selfcheck.json
+.cache

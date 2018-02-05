@@ -1,0 +1,15 @@
+[Unit]
+Description=Axon Websocket Proxy
+
+[Service]
+
+Restart=always
+RestartSec=2
+
+Environment="PYTHONPATH=/elan-agent/lib/python"
+
+ExecStart=/elan-agent/bin/axon-websocket-proxy
+
+[Install]
+WantedBy=multi-user.target
+
