@@ -1,0 +1,41 @@
+connection control-center
+address 127.0.0.1:1884
+local_clientid control-center
+remote_clientid ${uuid}
+bridge_protocol_version mqttv311
+% if agent_id and account_id:
+cleansession false
+
+topic  ""                                      in  0 conf/agent      agent/${agent_id}/conf
+topic  conf/vlans                              in  0 ""              agent/${agent_id}/
+topic  conf/guest-access                       in  0 ""              account/${account_id}/
+topic  conf/guest-access/active-authorizations in  0 ""              agent/${agent_id}/
+topic  conf/administrator                      in  0 ""              account/${account_id}/
+#topic conf/captive-portal                     in  0 ""              account/${account_id}/
+topic  conf/authentication                     in  0 control-center/ account/${account_id}/
+topic  check-macs-authz                        in  1 ""              account/${account_id}/
+
+topic  session/#                        out 1 ""        agent/${agent_id}/events/
+topic  mac/#                            out 1 ""        agent/${agent_id}/events/
+topic  connection                       out 1 ""        agent/${agent_id}/events/
+topic  event                            out 1 ""        agent/${agent_id}/events/
+topic  snmp                             out 1 ""        agent/${agent_id}/events/
+topic  authentication/provider/+/status out 1 conf/     agent/${agent_id}/
+topic  ""                               out 1 debug     agent/${agent_id}/events/event
+topic  ""                               out 1 exception agent/${agent_id}/events/event
+
+
+topic  service/requests/#              both 0 ""    agent/${agent_id}/
+topic  service/answers/#               both 0 ""    agent/${agent_id}/
+
+% else:
+cleansession true
+
+topic  register            out 0 service/requests/control-center/ agent/
+topic  register/+          in  0 service/answers/control-center/  agent/
+
+% endif
+
+autosave_interval 1
+autosave_on_changes true
+

@@ -1,0 +1,12 @@
+*.debhelper
+*.debhelper.log
+*.substvars
+files
+changelog
+control
+postinst
+postrm
+preinst
+prerm
+# Ignore all subdirs, as a subdir with the name of the package will be used to build the package
+*/

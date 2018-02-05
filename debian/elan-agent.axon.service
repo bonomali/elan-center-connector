@@ -1,0 +1,14 @@
+[Unit]
+
+Description=Access Control
+
+[Service]
+Restart=always
+RestartSec=10
+
+Environment=PYTHONPATH=/elan-agent/lib/python
+
+ExecStart=/elan-agent/bin/axon
+
+[Install]
+WantedBy=multi-user.target
