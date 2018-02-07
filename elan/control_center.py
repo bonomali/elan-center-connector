@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.hashers  import make_password
 from mako.template import Template
 from uuid import uuid4
 import threading
@@ -7,8 +6,6 @@ import time
 
 from elan import utils, session, device
 from elan.neuron import Dendrite, Synapse, RequestTimeout, RequestError
-
-settings.configure()
 
 CC_IPv4 = ['87.98.150.15']  # Control center IPs to be used in NGINX conf: indeed, when no resolver available, NGINX fails if we use fqdn
 CC_IPv6 = ['2001:41d0:2:ba47::1:10']
@@ -19,6 +16,9 @@ AGENT_UUID_PATH = 'agent:uuid'
 AGENT_LOCATION_PATH = 'agent:location'
 
 synapse = Synapse()
+
+# Must be called before import of make_password
+settings.configure()
 
 
 class AxonMapper:
@@ -60,6 +60,9 @@ class AxonMapper:
         raise RequestError('Connection to Control Center down')
 
     def register(self, data):
+        # settings.configure must have been called before this imort
+        from django.contrib.auth.hashers  import make_password
+
         # check control-center connectivity
         self.check_connectivity(data)
 
