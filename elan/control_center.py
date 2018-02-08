@@ -48,7 +48,7 @@ class AxonMapper:
 
         self.dendrite.publish_conf("authentication", agent_provided_authentications)
 
-    def check_connectivity(self, data):
+    def check_connectivity(self, data=None):
         # check control-center connectivity
         try:
             connected = bool(int(self.dendrite.get('$SYS/broker/connection/{uuid}/state'.format(uuid=synapse.get(AGENT_UUID_PATH)))))
@@ -64,7 +64,7 @@ class AxonMapper:
         from django.contrib.auth.hashers  import make_password
 
         # check control-center connectivity
-        self.check_connectivity(data)
+        self.check_connectivity()
 
         if not data:
             return {'status': 'available'}
