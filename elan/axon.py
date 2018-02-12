@@ -8,7 +8,7 @@ from elan import utils, session, device
 from elan.neuron import Dendrite, Synapse, RequestTimeout, RequestError
 
 CC_IPv4 = ['87.98.150.15']  # Control center IPs to be used in NGINX conf: indeed, when no resolver available, NGINX fails if we use fqdn
-CC_IPv6 = ['2001:41d0:2:ba47::1:10']
+CC_IPv6 = ['2001:41d0:2:ba47::1:11']
 
 ACCOUNT_ID_PATH = 'account:id'
 AGENT_ID_PATH = 'agent:id'
