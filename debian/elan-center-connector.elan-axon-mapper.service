@@ -8,7 +8,7 @@ RestartSec=10
 
 Environment=PYTHONPATH=/elan-agent/lib/python
 
-ExecStart=/elan-agent/bin/axon
+ExecStart=/elan-agent/bin/axon-mapper
 
 [Install]
 WantedBy=multi-user.target

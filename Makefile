@@ -16,7 +16,7 @@ core-python: elan/*.py
 center-connection: bin/axon_websocket_proxy.py axon.nginx elan-center-ca.crt axon.mosquitto
 	install -d ${DESTDIR}${ORIGIN_PREFIX}/bin
 	install bin/axon_websocket_proxy.py ${DESTDIR}${ORIGIN_PREFIX}/bin/axon-websocket-proxy
-	install bin/axon.py ${DESTDIR}${ORIGIN_PREFIX}/bin/axon
+	install bin/axon_mapper.py ${DESTDIR}${ORIGIN_PREFIX}/bin/axon-mapper
 	install -d ${DESTDIR}/etc/nginx/sites-enabled
 	ln -s ../sites-available/axon ${DESTDIR}/etc/nginx/sites-enabled/
 	install -d ${DESTDIR}${ORIGIN_PREFIX}/elan-center
