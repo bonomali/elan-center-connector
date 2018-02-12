@@ -29,7 +29,7 @@ class AxonMapper:
     def once_registered(self, agent):
         self.agent_id = agent['id']
 
-        self.dendrite.subscribe("control-center/conf/authentication", self.parse_authentications)
+        self.dendrite.subscribe("elan-center/conf/authentication", self.parse_authentications)
 
     def run(self):
         configure_axon()
@@ -49,7 +49,7 @@ class AxonMapper:
         self.dendrite.publish_conf("authentication", agent_provided_authentications)
 
     def check_connectivity(self, data=None):
-        # check control-center connectivity
+        # check elan-center connectivity
         try:
             connected = bool(int(self.dendrite.get('$SYS/broker/connection/{uuid}/state'.format(uuid=synapse.get(AGENT_UUID_PATH)))))
         except RequestTimeout:
@@ -57,13 +57,13 @@ class AxonMapper:
 
         if connected:
             return {'status': 'connected'}
-        raise RequestError('Connection to Control Center down')
+        raise RequestError('Connection to ELAN Center down')
 
     def register(self, data):
         # settings.configure must have been called before this imort
         from django.contrib.auth.hashers  import make_password
 
-        # check control-center connectivity
+        # check elan-center connectivity
         self.check_connectivity()
 
         if not data:
@@ -71,7 +71,7 @@ class AxonMapper:
 
         data['interfaces'] = sorted(utils.physical_ifaces())
 
-        result = self.dendrite.call('control-center/register', data)  # raises RequestError if registration fails
+        result = self.dendrite.call('elan-center/register', data)  # raises RequestError if registration fails
 
         # store this admin in conf (should be overridien once Axon correctly configured)
         self.dendrite.publish_conf('administrator', [dict(login=data['login'], password=make_password(data['password']))])
@@ -104,7 +104,7 @@ def configure_axon(reload=True):
         uuid = str(uuid4())
         synapse.set(AGENT_UUID_PATH, uuid)
 
-    axon_template = Template(filename="/elan-agent/control-center/axon.nginx")
+    axon_template = Template(filename="/elan-agent/elan-center/axon.nginx")
     with open ("/etc/nginx/sites-available/axon", "w") as axon_file:
         axon_file.write(axon_template.render(
                                   uuid=uuid,
@@ -116,7 +116,7 @@ def configure_axon(reload=True):
     if reload:
         utils.reload_service('nginx')
 
-    mosquitto_template = Template(filename="/elan-agent/control-center/axon.mosquitto")
+    mosquitto_template = Template(filename="/elan-agent/elan-center/axon.mosquitto")
     with open ("/etc/mosquitto/conf.d/axon.conf", "w") as mosquitto_file:
         mosquitto_file.write(mosquitto_template.render(
                                   uuid=uuid,

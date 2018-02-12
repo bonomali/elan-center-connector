@@ -1,6 +1,6 @@
-connection control-center
+connection elan-center
 address 127.0.0.1:1884
-local_clientid control-center
+local_clientid elan-center
 remote_clientid ${uuid}
 bridge_protocol_version mqttv311
 % if agent_id and account_id:
@@ -12,7 +12,7 @@ topic  conf/guest-access                       in  0 ""              account/${a
 topic  conf/guest-access/active-authorizations in  0 ""              agent/${agent_id}/
 topic  conf/administrator                      in  0 ""              account/${account_id}/
 #topic conf/captive-portal                     in  0 ""              account/${account_id}/
-topic  conf/authentication                     in  0 control-center/ account/${account_id}/
+topic  conf/authentication                     in  0 elan-center/ account/${account_id}/
 topic  check-macs-authz                        in  1 ""              account/${account_id}/
 
 topic  session/#                        out 1 ""        agent/${agent_id}/events/
@@ -31,8 +31,8 @@ topic  service/answers/#               both 0 ""    agent/${agent_id}/
 % else:
 cleansession true
 
-topic  register            out 0 service/requests/control-center/ agent/
-topic  register/+          in  0 service/answers/control-center/  agent/
+topic  register            out 0 service/requests/elan-center/ agent/
+topic  register/+          in  0 service/answers/elan-center/  agent/
 
 % endif
 
