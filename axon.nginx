@@ -21,7 +21,7 @@ server {
     proxy_set_header Connection "";
     proxy_read_timeout 7200;
 
-    proxy_ssl_trusted_certificate /elan-agent/elan-center/ca.crt;
+    proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
     proxy_ssl_verify_depth 5;
     proxy_ssl_name elan-center.origin-nexus.com;
     proxy_ssl_verify on;
