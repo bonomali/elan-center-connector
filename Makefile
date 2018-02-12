@@ -13,13 +13,13 @@ core-python: elan/*.py
 	install -m 644 -t ${DESTDIR}${ORIGIN_PREFIX}/lib/python/elan elan/*.py
 
 .PHONY: center-connection
-center-connection: bin/axon_websocket_proxy.py axon.nginx control-center-ca.crt axon.mosquitto
+center-connection: bin/axon_websocket_proxy.py axon.nginx elan-center-ca.crt axon.mosquitto
 	install -d ${DESTDIR}${ORIGIN_PREFIX}/bin
 	install bin/axon_websocket_proxy.py ${DESTDIR}${ORIGIN_PREFIX}/bin/axon-websocket-proxy
 	install bin/axon.py ${DESTDIR}${ORIGIN_PREFIX}/bin/axon
 	install -d ${DESTDIR}/etc/nginx/sites-enabled
 	ln -s ../sites-available/axon ${DESTDIR}/etc/nginx/sites-enabled/
-	install -d ${DESTDIR}${ORIGIN_PREFIX}/control-center
-	install -m 644 axon.nginx ${DESTDIR}${ORIGIN_PREFIX}/control-center/
-	install -m 644 control-center-ca.crt ${DESTDIR}${ORIGIN_PREFIX}/control-center/ca.crt
-	install -m 644 axon.mosquitto ${DESTDIR}${ORIGIN_PREFIX}/control-center/
+	install -d ${DESTDIR}${ORIGIN_PREFIX}/elan-center
+	install -m 644 axon.nginx ${DESTDIR}${ORIGIN_PREFIX}/elan-center/
+	install -m 644 elan-center-ca.crt ${DESTDIR}${ORIGIN_PREFIX}/elan-center/ca.crt
+	install -m 644 axon.mosquitto ${DESTDIR}${ORIGIN_PREFIX}/elan-center/
