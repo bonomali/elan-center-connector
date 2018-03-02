@@ -2,6 +2,9 @@
 export DH_VERBOSE=1
 
 
+override_dh_installcron:
+	dh_installcron --name=elan-rule-fetcher
+
 override_dh_systemd_start:
 	dh_systemd_start --restart-after-upgrade
 
