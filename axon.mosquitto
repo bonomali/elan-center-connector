@@ -3,36 +3,36 @@ address 127.0.0.1:1884
 local_clientid elan-center
 remote_clientid ${uuid}
 bridge_protocol_version mqttv311
-% if agent_id and account_id:
+% if agent_id:
 cleansession false
 
-topic  ""                                      in  0 conf/agent      agent/${agent_id}/conf
-topic  conf/vlans                              in  0 ""              agent/${agent_id}/
-topic  conf/guest-access                       in  0 ""              account/${account_id}/
-topic  conf/guest-access/active-authorizations in  0 ""              agent/${agent_id}/
-topic  conf/administrator                      in  0 ""              account/${account_id}/
-#topic conf/captive-portal                     in  0 ""              account/${account_id}/
-topic  conf/authentication                     in  0 elan-center/ account/${account_id}/
-topic  check-macs-authz                        in  1 ""              account/${account_id}/
+topic  ""                                      in  0 conf/agent      agent/${uuid}/conf
+topic  conf/vlans                              in  0 ""              agent/${uuid}/
+topic  conf/guest-access                       in  0 ""              agent/${uuid}/
+topic  conf/guest-access/active-authorizations in  0 ""              agent/${uuid}/
+topic  conf/administrator                      in  0 ""              agent/${uuid}/
+#topic conf/captive-portal                     in  0 ""              agent/${uuid}/
+topic  conf/authentication                     in  0 elan-center/    agent/${uuid}/
+topic  check-macs-authz                        in  1 ""              agent/${uuid}/
 
-topic  session/#                        out 1 ""        agent/${agent_id}/events/
-topic  mac/#                            out 1 ""        agent/${agent_id}/events/
-topic  connection                       out 1 ""        agent/${agent_id}/events/
-topic  event                            out 1 ""        agent/${agent_id}/events/
-topic  snmp                             out 1 ""        agent/${agent_id}/events/
-topic  authentication/provider/+/status out 1 conf/     agent/${agent_id}/
-topic  ""                               out 1 debug     agent/${agent_id}/events/event
-topic  ""                               out 1 exception agent/${agent_id}/events/event
+topic  session/#                        out 1 ""        agent/${uuid}/events/
+topic  mac/#                            out 1 ""        agent/${uuid}/events/
+topic  connection                       out 1 ""        agent/${uuid}/events/
+topic  event                            out 1 ""        agent/${uuid}/events/
+topic  snmp                             out 1 ""        agent/${uuid}/events/
+topic  authentication/provider/+/status out 1 conf/     agent/${uuid}/
+topic  ""                               out 1 debug     agent/${uuid}/events/event
+topic  ""                               out 1 exception agent/${uuid}/events/event
 
 
-topic  service/requests/#              both 0 ""    agent/${agent_id}/
-topic  service/answers/#               both 0 ""    agent/${agent_id}/
+topic  service/requests/#              both 0 ""    agent/${uuid}/
+topic  service/answers/#               both 0 ""    agent/${uuid}/
 
 % else:
 cleansession true
 
-topic  register            out 0 service/requests/elan-center/ agent/
-topic  register/+          in  0 service/answers/elan-center/  agent/
+topic  register            out 0 service/requests/elan-center/ agent/${uuid}
+topic  register/+          in  0 service/answers/elan-center/  agent/${uuid}
 
 % endif
 
