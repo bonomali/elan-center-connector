@@ -31,8 +31,8 @@ topic  service/answers/#               both 0 ""    agent/${uuid}/
 % else:
 cleansession true
 
-topic  register            out 0 service/requests/elan-center/ agent/${uuid}
-topic  register/+          in  0 service/answers/elan-center/  agent/${uuid}
+topic  register            out 0 service/requests/elan-center/ agent/${uuid}/
+topic  register/+          in  0 service/answers/elan-center/  agent/${uuid}/
 
 % endif
 
