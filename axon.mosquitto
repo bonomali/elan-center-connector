@@ -7,12 +7,12 @@ bridge_protocol_version mqttv311
 cleansession false
 
 topic  conf/vlans                              in  0 ""              agent/${uuid}/
-topic  conf/radis                              in  0 ""              agent/${uuid}/
+topic  conf/radius                             in  0 ""              agent/${uuid}/
 topic  conf/snmp                               in  0 ""              agent/${uuid}/
 topic  conf/guest-access                       in  0 ""              agent/${uuid}/
 topic  conf/guest-access/active-authorizations in  0 ""              agent/${uuid}/
 topic  conf/administrator                      in  0 ""              agent/${uuid}/
-#topic conf/captive-portal                     in  0 ""              agent/${uuid}/
+topic  conf/captive-portal                     in  0 ""              agent/${uuid}/
 topic  conf/authentication                     in  0 elan-center/    agent/${uuid}/
 topic  check-macs-authz                        in  1 ""              agent/${uuid}/
 
