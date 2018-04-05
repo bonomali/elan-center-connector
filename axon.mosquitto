@@ -6,8 +6,9 @@ bridge_protocol_version mqttv311
 % if agent_id:
 cleansession false
 
-topic  ""                                      in  0 conf/agent      agent/${uuid}/conf
 topic  conf/vlans                              in  0 ""              agent/${uuid}/
+topic  conf/radis                              in  0 ""              agent/${uuid}/
+topic  conf/snmp                               in  0 ""              agent/${uuid}/
 topic  conf/guest-access                       in  0 ""              agent/${uuid}/
 topic  conf/guest-access/active-authorizations in  0 ""              agent/${uuid}/
 topic  conf/administrator                      in  0 ""              agent/${uuid}/
