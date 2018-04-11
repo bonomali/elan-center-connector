@@ -1,0 +1,21 @@
+Origin Nexus Easy LAN Guest Access Request
+------------------------------------------
+
+<%!
+  def indent_lines(test):
+    return text.replace('\n', '\n    ')
+%>
+
+Guest Request:
+% for field in fields:
+  % if field.type == 'textarea':
+  - ${field.display_name}:
+    ${field.value | indent_lines}
+  % else:
+  - ${field.display_name}: ${field.value}
+  % endif
+% endfor
+
+------------------------------------------
+
+Grant Access: ${action_url}
