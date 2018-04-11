@@ -13,7 +13,7 @@ topic  conf/guest-access                       in  0 ""              agent/${uui
 topic  conf/guest-access/active-authorizations in  0 ""              agent/${uuid}/
 topic  conf/administrator                      in  0 ""              agent/${uuid}/
 topic  conf/captive-portal                     in  0 ""              agent/${uuid}/
-topic  conf/authentication                     in  0 elan-center/    agent/${uuid}/
+topic  conf/authentication                     in  0 ""              agent/${uuid}/
 topic  check-macs-authz                        in  1 ""              agent/${uuid}/
 
 topic  session/#                        out 1 ""        agent/${uuid}/events/
@@ -26,8 +26,15 @@ topic  ""                               out 1 debug     agent/${uuid}/events/eve
 topic  ""                               out 1 exception agent/${uuid}/events/event
 
 
-topic  service/requests/#              both 0 ""    agent/${uuid}/
-topic  service/answers/#               both 0 ""    agent/${uuid}/
+topic  service/requests/assignments                             out 0 ""    agent/${uuid}/
+topic  service/answers/assignments/+                            in  0 ""    agent/${uuid}/
+topic  service/requests/authentication/external/authenticate    out 0 ""    agent/${uuid}/
+topic  service/answers/authentication/external/authenticate/+   in  0 ""    agent/${uuid}/
+topic  service/requests/authentication/external/authorize       out 0 ""    agent/${uuid}/
+topic  service/answers/authentication/external/authorize/+      in  0 ""    agent/${uuid}/
+
+topic  guest-request       out 0 service/requests/elan-center/ agent/${uuid}/service/requests/
+topic  guest-request/+     in  0 service/answers/elan-center/  agent/${uuid}/service/answers/
 
 % else:
 cleansession true

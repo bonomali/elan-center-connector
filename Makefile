@@ -1,6 +1,6 @@
 PACKAGE-NAME := elan-center-connector
 PACKAGE-DESC := Easy LAN Agent
-PACKAGE-DEPENDS := python3, python3-mako, python3-django, elan-agent, ca-certificates
+PACKAGE-DEPENDS := python3, python3-mako, python3-django, elan-agent, ca-certificates, postfix
 
 include packaging.mk
 
