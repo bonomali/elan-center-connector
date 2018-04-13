@@ -26,8 +26,8 @@ topic  ""                               out 1 debug     agent/${uuid}/events/eve
 topic  ""                               out 1 exception agent/${uuid}/events/event
 
 
-topic  service/requests/assignments                             out 0 ""    agent/${uuid}/
-topic  service/answers/assignments/+                            in  0 ""    agent/${uuid}/
+topic  service/requests/device-authorization                    out 0 ""    agent/${uuid}/
+topic  service/answers/device-authorization/+                   in  0 ""    agent/${uuid}/
 topic  service/requests/authentication/external/authenticate    out 0 ""    agent/${uuid}/
 topic  service/answers/authentication/external/authenticate/+   in  0 ""    agent/${uuid}/
 topic  service/requests/authentication/external/authorize       out 0 ""    agent/${uuid}/
