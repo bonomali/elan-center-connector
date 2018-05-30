@@ -129,7 +129,7 @@ def configure_axon(reload=True):
         synapse.set(AGENT_UUID_PATH, uuid)
 
     axon_template = Template(filename="/elan-agent/elan-center/axon.nginx")
-    with open ("/etc/nginx/sites-available/axon", "w") as axon_file:
+    with open ("/etc/nginx/sites-enabled/axon", "w") as axon_file:
         axon_file.write(axon_template.render(
                                   uuid=uuid,
                                   cc_ipv4=CC_IPv4,
