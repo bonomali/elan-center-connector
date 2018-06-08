@@ -4,13 +4,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from mako.lookup import TemplateLookup
 from mako.template import Template
-from uuid import uuid4
-import smtplib
-import threading
+import datetime
 import time
 
 from elan import utils, session, device
 from elan.neuron import Dendrite, Synapse, RequestTimeout, RequestError
+from uuid import uuid4
+import smtplib
+import threading
 
 CC_IPv4 = ['87.98.150.15']  # Control center IPs to be used in NGINX conf: indeed, when no resolver available, NGINX fails if we use fqdn
 CC_IPv6 = ['2001:41d0:2:ba47::1:11']
@@ -31,19 +32,23 @@ class AxonMapper:
     def __init__(self):
         self.dendrite = Dendrite()
 
-    def once_registered(self, agent):
-        self.agent_id = agent['id']
-
-        self.dendrite.provide("guest-request", self.guest_request)
-
     def run(self):
         configure_axon()
 
-        self.dendrite.subscribe_conf("agent", self.once_registered)
         self.dendrite.provide('register', self.register)
         self.dendrite.provide('check-connectivity', self.check_connectivity)
+        self.dendrite.provide('guest-request', self.guest_request)
+        self.dendrite.subscribe('notify-knowledge', self.notify_knowledge)
 
         self.dendrite.wait_complete()
+
+    def notify_knowledge(self, info):
+        if 'sessions' in info:
+            session.notify_current_sessions()
+        if 'hostnames' in info:
+            device.notify_known_hostnames()
+        if 'fingerprints' in info:
+            device.notify_known_fingerprints()
 
     def guest_request(self, request):
         response = self.dendrite.call('elan-center/guest-request', request)
