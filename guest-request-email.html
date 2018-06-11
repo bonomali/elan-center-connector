@@ -1,4 +1,4 @@
-<%inherit file="base_email.html"/>
+<%inherit file="./base_email.html"/>
 <%!
     import markupsafe
     def br(text):
@@ -15,7 +15,7 @@
 
         <table class="four columns">
           <tr>
-            <td class="label">${field.display_name}</td>
+            <td class="label">${field['display_name']}</td>
             <td class="expander"></td>
           </tr>
         </table>
@@ -27,10 +27,10 @@
         <table class="height columns">
           <tr>
             <td>
-              % if field.type == 'textarea':
-                ${field.value | br}
+              % if field['type'] == 'textarea':
+                ${field['value'] | br}
               % else:
-                ${field.value}
+                ${field['value']}
               % endif
             </td>
             <td class="expander"></td>
