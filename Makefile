@@ -20,7 +20,7 @@ core-python: elan/*.py core-pylib
 	install -m 644 -t ${DESTDIR}${ELAN_PREFIX}/lib/python/elan elan/*.py
 
 .PHONY: center-connection
-center-connection: bin/axon_websocket_proxy.py bin/axon_mapper.py bin/rule_fetcher.py axon.nginx axon.mosquitto guest-request-email.html guest-request-email.txt
+center-connection: bin/axon_websocket_proxy.py bin/axon_mapper.py bin/rule_fetcher.py axon.nginx axon.mosquitto guest-request-email.html guest-request-email.txt base-email.html
 	install -d ${DESTDIR}${ELAN_PREFIX}/bin
 	install bin/axon_websocket_proxy.py ${DESTDIR}${ELAN_PREFIX}/bin/axon-websocket-proxy
 	install bin/axon_mapper.py ${DESTDIR}${ELAN_PREFIX}/bin/axon-mapper
