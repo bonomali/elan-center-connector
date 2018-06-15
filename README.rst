@@ -19,7 +19,7 @@ ELAN Agent is designed to run on Ubuntu 18.04 (Bionic)
   
     $ sudo add-apt-repository ppa:easy-lan/stable
     $ sudo apt-get update
-    $ sudo apt install elan-agent
+    $ sudo apt install elan-center-connector
 
 Note: This will modify your network configuration and create a bridge with the first 2 interfaces it finds, and obtain an address by DHCP.
 
