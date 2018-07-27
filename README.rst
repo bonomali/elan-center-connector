@@ -1,9 +1,9 @@
 Overview
 ########
 
-This is the a connector to use Origin Nexus' hosted `ELAN center <https://elan-center.origin-nexus.com>`_ with Elan agent.
+This is the a connector to use Origin Nexus' hosted `ELAN center <https://origin-nexus.com/elan/#elan-center>`_ with `ELAN agent <https://github.com/michael-mri/elan-agent>`_.
 
-`ELAN center <https://elan-center.origin-nexus.com>`_ provides a web interface to configure and manage several ELAN agent with features such as delegated admin, GSuite authentication,...
+`ELAN center <https://origin-nexus.com/elan/#elan-center>`_ provides a web interface to configure and manage several ELAN agent with features such as delegated admin, GSuite authentication,...
 
 
 
