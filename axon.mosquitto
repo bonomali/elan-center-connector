@@ -21,9 +21,9 @@ topic  mac/#                            out 1 ""        agent/${uuid}/events/
 topic  connection                       out 1 ""        agent/${uuid}/events/
 topic  event                            out 1 ""        agent/${uuid}/events/
 topic  snmp                             out 1 ""        agent/${uuid}/events/
+topic  debug                            out 1 ""        agent/${uuid}/events/
+topic  exception                        out 1 ""        agent/${uuid}/events/
 topic  authentication/provider/+/status out 1 conf/     agent/${uuid}/
-topic  ""                               out 1 debug     agent/${uuid}/events/event
-topic  ""                               out 1 exception agent/${uuid}/events/event
 
 
 topic  service/requests/device-authorization                    out 0 ""    agent/${uuid}/
