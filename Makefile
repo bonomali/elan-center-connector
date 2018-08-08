@@ -20,7 +20,7 @@ core-python: elan/*.py core-pylib
 	install -m 644 -t ${DESTDIR}${ELAN_PREFIX}/lib/python/elan elan/*.py
 
 .PHONY: center-connection
-center-connection: bin/axon_websocket_proxy.py bin/axon_mapper.py bin/rule_fetcher.py axon.nginx axon.mosquitto guest-request-email.html guest-request-email.txt base-email.html
+center-connection: bin/axon_websocket_proxy.py bin/axon_mapper.py bin/rule_fetcher.py axon.nginx axon.mosquitto guest-request-email.html guest-request-email.txt base_email.html
 	install -d ${DESTDIR}${ELAN_PREFIX}/bin
 	install bin/axon_websocket_proxy.py ${DESTDIR}${ELAN_PREFIX}/bin/axon-websocket-proxy
 	install bin/axon_mapper.py ${DESTDIR}${ELAN_PREFIX}/bin/axon-mapper
@@ -28,7 +28,7 @@ center-connection: bin/axon_websocket_proxy.py bin/axon_mapper.py bin/rule_fetch
 	install -d ${DESTDIR}${ELAN_PREFIX}/elan-center
 	install -m 644 axon.nginx ${DESTDIR}${ELAN_PREFIX}/elan-center/
 	install -m 644 axon.mosquitto ${DESTDIR}${ELAN_PREFIX}/elan-center/
-	install -m 644 base-email.html ${DESTDIR}${ELAN_PREFIX}/elan-center/
+	install -m 644 base_email.html ${DESTDIR}${ELAN_PREFIX}/elan-center/
 	install -m 644 guest-request-email.html ${DESTDIR}${ELAN_PREFIX}/elan-center/
 	install -m 644 guest-request-email.txt ${DESTDIR}${ELAN_PREFIX}/elan-center/
 
