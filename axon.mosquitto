@@ -15,6 +15,7 @@ topic  conf/administrator                      in  0 ""              agent/${uui
 topic  conf/captive-portal                     in  0 ""              agent/${uuid}/
 topic  conf/authentication                     in  0 ""              agent/${uuid}/
 topic  check-macs-authz                        in  1 ""              agent/${uuid}/
+topic  notify-knowledge                        in  1 ""              agent/${uuid}/
 topic  conf/ipv4                             both  0 ""              agent/${uuid}/
 topic  conf/ipv6                             both  0 ""              agent/${uuid}/
 topic  conf/ipv4/current                      out  0 ""              agent/${uuid}/
